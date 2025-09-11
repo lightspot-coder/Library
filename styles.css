@@ -1,3 +1,22 @@
 table, td, th {
   border: 1px solid black;
 }
+
+.body-container{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.sidebar{
+    background-color: blue;
+    color: white;
+    grid-column: 1/2;
+}
+
+table{
+    grid-column: 2/3;
+}
+
+form{
+    display: grid;
+}

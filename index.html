@@ -8,18 +8,38 @@
   </head>
 
   <body>
-    
-    <table>
-      <tbody id="LibraryTable">
-      <tr>
-        <th>Author</th>
-        <th>Title</th>
-        <th>Pages</th>
-        <th>read it?</th>
-      </tr>
-      </tbody>
-    </table>
-    <script src="myscripts.js"></script>
+    <div class="body-container" id="body_container">
+      <div class="sidebar">
+        <form action="" method="post">
+          <p>Add a new book:</p>
+          <label for="author_name">Author:</label>
+          <input type="text" id="author_name" name="author">
+          <label for="title_book">Title:</label>
+          <input type="text" id="title_book" name="title">
+          <label for="total_pages">Total pages:</label>
+          <input type="number" id="total_pages" name="totalPages">
+          <p>Are you read it?</p>
+          <select id="select_option" name="is_read_it">
+            <option value="true" selected>True</option>
+            <option value="false">False</option>
+          </select>
+          <button id="addBook_button">Add new book</button>
+        </form>
+      </div>
+      <table id="LibraryTable">
+        <thead>
+          <tr>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Pages</th>
+            <th>read it?</th>
+          </tr>
+        </thead>
+        <tbody id = "LibraryTable_Body"></tbody>
+        
+      </table>
+      <script src="myscripts.js"></script>
+    </div>
   </body>
 
 </html>

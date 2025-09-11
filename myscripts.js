@@ -1,5 +1,7 @@
 
 const Library_Table = document.getElementById("LibraryTable");
+let Library_Table_Body = document.getElementById("LibraryTable_Body");
+const body_container = document.getElementById("body_container");
 const myLibrary = [];
 let totalBooks = 0;
 
@@ -24,7 +26,12 @@ function addBookToLibrary(author, title, numberOfPages, isReadIt ) {
 
 function displayBooks() {
     console.log("Total of books in the Library = " + totalBooks);
+
+    Library_Table_Body.remove();
+    Library_Table_Body = document.createElement("tbody");
+    Library_Table_Body.setAttribute("id","LibraryTable_Body");
     
+
     for(let i = 0; i < totalBooks ; i++){
         console.log(myLibrary[i]);
         const author_Cell = document.createElement("td");
@@ -42,8 +49,9 @@ function displayBooks() {
         newBook_Row.appendChild(totalPages_Cell);
         newBook_Row.appendChild(isReadIt_Cell);
         
-        Library_Table.appendChild(newBook_Row);
+        Library_Table_Body.appendChild(newBook_Row);
     }
+    Library_Table.appendChild(Library_Table_Body);
 }
 
 const author1 = "shakespeare";
@@ -61,3 +69,27 @@ const isReadIt2 = false;
 addBookToLibrary(author2, title2, numberOfPages2, isReadIt2 ) 
 
 displayBooks();
+
+
+/* prevent the normal action from submit button (sending the info to the server)*/
+
+function buttonClick(event) {
+  event.preventDefault();
+}
+
+function submitForm(){
+
+    const author = document.getElementById("author_name").value;
+    const title = document.getElementById("title_book").value;
+    const numberOfPages = document.getElementById("total_pages").value;
+    const isReadIt = document.getElementById("select_option").value;
+    
+    addBookToLibrary(author, title, numberOfPages, isReadIt );
+    displayBooks();
+}
+
+const addBookButton = document.getElementById("addBook_button");
+
+addBookButton.addEventListener("click", buttonClick, false);
+addBookButton.addEventListener("click", submitForm, false);
+
