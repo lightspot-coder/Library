@@ -15,6 +15,14 @@ function Book(author, title, numberOfPages, isReadIt) {
   this.title = title;
   this.numberOfPages = numberOfPages;
   this.isReadIt = isReadIt;
+  this.id = crypto.randomUUID();
+}
+
+Book.prototype.changeReadStatus = function(){
+  if(this.isReadIt === "Yes")
+    this.isReadIt = "No";
+  else
+    this.isReadIt = "Yes";
 }
 
 function addBookToLibrary(author, title, numberOfPages, isReadIt ) {
@@ -22,6 +30,33 @@ function addBookToLibrary(author, title, numberOfPages, isReadIt ) {
   const newBook = new Book(author, title, numberOfPages, isReadIt);
   myLibrary.push(newBook);
   totalBooks += 1;
+}
+
+function removeBook(id){
+
+  
+  for(let i=0; i < totalBooks ; i++){
+    if(myLibrary[i].id === id){
+      totalBooks -= 1;
+      console.log("The book " + myLibrary[i].title + " was erased. The library now have " + totalBooks + " books in total" );
+      myLibrary.splice(i,1);
+      displayBooks();
+      break;
+    }
+  }
+
+}function changeStatusButton(id){
+  for(let i=0; i < totalBooks ; i++){
+    if(myLibrary[i].id === id){
+        let oldStatus = myLibrary[i].isReadIt;
+        myLibrary[i].changeReadStatus();
+        let newSatus = myLibrary[i].isReadIt;
+        console.log("Change the status of the book " + myLibrary[i].title  + " : " + oldStatus + " to " + newSatus );
+        displayBooks();
+        break;
+    }
+  }
+
 }
 
 function displayBooks() {
@@ -33,7 +68,7 @@ function displayBooks() {
     
 
     for(let i = 0; i < totalBooks ; i++){
-        console.log(myLibrary[i]);
+        /*console.log(myLibrary[i]);*/
         const author_Cell = document.createElement("td");
         author_Cell.textContent = myLibrary[i].author;
         const title_Cell = document.createElement("td");
@@ -43,11 +78,39 @@ function displayBooks() {
         const isReadIt_Cell = document.createElement("td");
         isReadIt_Cell.textContent = myLibrary[i].isReadIt;
 
+        const remove_book_Button = document.createElement("button");
+        remove_book_Button.setAttribute("type","button");
+        remove_book_Button.setAttribute("data",myLibrary[i].id);
+        remove_book_Button.textContent = "Remove Book";
+        remove_book_Button.addEventListener("click",() => {
+
+            console.log("Removing the book with id " + remove_book_Button.getAttribute("data"));
+            removeBook(remove_book_Button.getAttribute("data"));
+
+        });
+
+        const change_status_Button = document.createElement("button");
+        change_status_Button.setAttribute("type","button");
+        change_status_Button.setAttribute("data",myLibrary[i].id);
+        change_status_Button.textContent = "Change read status";
+        change_status_Button.addEventListener("click",() => {
+
+            console.log("Changing the status of the book with id " + change_status_Button.getAttribute("data"));
+            changeStatusButton(change_status_Button.getAttribute("data"));
+
+        });
+
         const newBook_Row = document.createElement("tr");
         newBook_Row.appendChild(author_Cell);
         newBook_Row.appendChild(title_Cell);
         newBook_Row.appendChild(totalPages_Cell);
         newBook_Row.appendChild(isReadIt_Cell);
+        
+        const book_buttons_div = document.createElement("div");
+        book_buttons_div.appendChild(remove_book_Button);
+        book_buttons_div.appendChild(change_status_Button);
+        newBook_Row.appendChild(book_buttons_div);
+        
         
         Library_Table_Body.appendChild(newBook_Row);
     }
@@ -57,14 +120,14 @@ function displayBooks() {
 const author1 = "shakespeare";
 const title1 = "Romeo and Juliet ";
 const numberOfPages1 = 400;
-const isReadIt1 = true;
+const isReadIt1 = "Yes";
 
 addBookToLibrary(author1, title1, numberOfPages1, isReadIt1 ) 
 
 const author2 = "Asimov";
 const title2 = "Fundation";
 const numberOfPages2 = 600;
-const isReadIt2 = false;
+const isReadIt2 = "No";
 
 addBookToLibrary(author2, title2, numberOfPages2, isReadIt2 ) 
 
