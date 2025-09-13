@@ -75,9 +75,10 @@ function displayBooks() {
         title_Cell.textContent = myLibrary[i].title;
         const totalPages_Cell = document.createElement("td");
         totalPages_Cell.textContent = myLibrary[i].numberOfPages;
-        const isReadIt_Cell = document.createElement("td");
-        isReadIt_Cell.textContent = myLibrary[i].isReadIt;
+        //const isReadIt_Cell = document.createElement("td");
+        //isReadIt_Cell.textContent = myLibrary[i].isReadIt;
 
+        /*
         const remove_book_Button = document.createElement("button");
         remove_book_Button.setAttribute("type","button");
         remove_book_Button.setAttribute("data",myLibrary[i].id);
@@ -87,8 +88,22 @@ function displayBooks() {
             console.log("Removing the book with id " + remove_book_Button.getAttribute("data"));
             removeBook(remove_book_Button.getAttribute("data"));
 
+        });*/
+
+        const remove_book_Button = document.createElement("img");
+        remove_book_Button.setAttribute("src","img/alpha-x-box.svg");
+        remove_book_Button.setAttribute("width","40px");
+        remove_book_Button.setAttribute("height","40px");
+        remove_book_Button.setAttribute("data",myLibrary[i].id);
+        remove_book_Button.addEventListener("click",() => {
+
+            console.log("Removing the book with id " + remove_book_Button.getAttribute("data"));
+            removeBook(remove_book_Button.getAttribute("data"));
+
         });
 
+
+        /*
         const change_status_Button = document.createElement("button");
         change_status_Button.setAttribute("type","button");
         change_status_Button.setAttribute("data",myLibrary[i].id);
@@ -98,17 +113,47 @@ function displayBooks() {
             console.log("Changing the status of the book with id " + change_status_Button.getAttribute("data"));
             changeStatusButton(change_status_Button.getAttribute("data"));
 
+        });*/
+        const change_status_Button = document.createElement("img");
+        change_status_Button.setAttribute("src","img/arrow-down-drop-circle.svg");
+        change_status_Button.setAttribute("data",myLibrary[i].id);
+        change_status_Button.setAttribute("width","20px");
+        change_status_Button.setAttribute("height","20px");
+        change_status_Button.textContent = "Change read status";
+        change_status_Button.addEventListener("click",() => {
+
+            console.log("Changing the status of the book with id " + change_status_Button.getAttribute("data"));
+            changeStatusButton(change_status_Button.getAttribute("data"));
+
         });
+
+
 
         const newBook_Row = document.createElement("tr");
         newBook_Row.appendChild(author_Cell);
         newBook_Row.appendChild(title_Cell);
         newBook_Row.appendChild(totalPages_Cell);
-        newBook_Row.appendChild(isReadIt_Cell);
+        //newBook_Row.appendChild(isReadIt_Cell);
+
+        const read_status_cell = document.createElement("td");
+        const read_status_p = document.createElement("p");
+        read_status_p.textContent = myLibrary[i].isReadIt;
+
+        const read_status_div = document.createElement("div");
+        read_status_div.setAttribute("id","read-status-div");
         
+        
+        read_status_div.appendChild(read_status_p);
+        read_status_div.appendChild(change_status_Button);
+
+        read_status_cell.appendChild(read_status_div);
+        
+        newBook_Row.appendChild(read_status_cell);
+
         const book_buttons_div = document.createElement("div");
+        book_buttons_div.setAttribute("id","book-Buttons-div");
         book_buttons_div.appendChild(remove_book_Button);
-        book_buttons_div.appendChild(change_status_Button);
+        //book_buttons_div.appendChild(change_status_Button);
         newBook_Row.appendChild(book_buttons_div);
         
         
@@ -134,7 +179,7 @@ addBookToLibrary(author2, title2, numberOfPages2, isReadIt2 )
 displayBooks();
 
 
-/* prevent the normal action from submit button (sending the info to the server)*/
+/* prevent the normal action from submit button (prevent sending the info to the server)*/
 
 function buttonClick(event) {
   event.preventDefault();

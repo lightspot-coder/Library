@@ -1,22 +1,92 @@
-table, td, th {
-  border: 1px solid black;
+html {
+  font-family: sans-serif;
+}
+
+
+
+
+td, th {
+   border-collapse: collapse;
+  border: 2px solid rgb(200,200,200);
+  letter-spacing: 1px;
+  
+}
+
+th {
+  background-color: rgb(235,235,235);
+}
+
+td {
+  text-align: center;
+}
+
+table{
+    grid-column: 2/3;
+    table-layout: fixed;
+    width:900px;
+}
+
+thead > tr >  th:last-child{
+    border-style: none;
+    background-color: white;
 }
 
 .body-container{
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 6fr;
+    grid-template-rows: 50px;
+    
 }
 
 .sidebar{
     background-color: blue;
     color: white;
     grid-column: 1/2;
+    grid-row: 1/2;
+    height: 257px;
+    font-weight: bold;
+    width:200px;
 }
 
-table{
-    grid-column: 2/3;
-}
+
 
 form{
-    display: grid;
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+#book-Buttons-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: stretch;
+}
+
+#book-Buttons-div > img {
+
+    border-style: none;
+    align-self: self-start;
+}
+
+#read-status-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
 }
