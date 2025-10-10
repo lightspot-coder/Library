@@ -5,25 +5,25 @@ const body_container = document.getElementById("body_container");
 const myLibrary = [];
 let totalBooks = 0;
 
-function Book(author, title, numberOfPages, isReadIt) {
-  // the constructor...
-  if (!new.target) {
-    throw Error("You must use the 'new' operator to call the constructor");
+// class book
+
+class Book {
+
+  constructor(author, title, numberOfPages, isReadIt){
+    this.author = author;
+    this.title = title;
+    this.numberOfPages = numberOfPages;
+    this.isReadIt = isReadIt;
+    this.id = crypto.randomUUID();
   }
-
-  this.author = author;
-  this.title = title;
-  this.numberOfPages = numberOfPages;
-  this.isReadIt = isReadIt;
-  this.id = crypto.randomUUID();
-}
-
-Book.prototype.changeReadStatus = function(){
-  if(this.isReadIt === "Yes")
-    this.isReadIt = "No";
-  else
+  changeReadStatus() {
+    if(this.isReadIt === "Yes")
+      this.isReadIt = "No";
+    else
     this.isReadIt = "Yes";
+  }
 }
+
 
 function addBookToLibrary(author, title, numberOfPages, isReadIt ) {
   // take params, create a book then store it in the array
