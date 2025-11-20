@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <link rel='stylesheet' href='styles.css'/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="styles.css" />
     <title>Library</title>
   </head>
 
@@ -13,17 +13,17 @@
         <form action="" method="post">
           <p>Add a new book:</p>
           <label for="author_name">Author:</label>
-          <input type="text" id="author_name" name="author">
+          <input type="text" id="author_name" name="author" />
           <label for="title_book">Title:</label>
-          <input type="text" id="title_book" name="title">
+          <input type="text" id="title_book" name="title" />
           <label for="total_pages">Total pages:</label>
-          <input type="number" id="total_pages" name="totalPages">
+          <input type="number" id="total_pages" name="totalPages" />
           <p>Are you read it?</p>
           <select id="select_option" name="is_read_it">
             <option value="Yes" selected>Yes</option>
             <option value="No">No</option>
           </select>
-          <button id="addBook_button">Add new book</button>
+          <button id="addBook_button" type="submit">Add new book</button>
         </form>
       </div>
       <table id="LibraryTable">
@@ -36,11 +36,9 @@
             <th></th>
           </tr>
         </thead>
-        <tbody id = "LibraryTable_Body"></tbody>
-        
+        <tbody id="LibraryTable_Body"></tbody>
       </table>
       <script src="myscripts.js"></script>
     </div>
   </body>
-
 </html>
